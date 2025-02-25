@@ -74,10 +74,9 @@ class DomainController extends Controller
 
     public function update(Request $request, $id)
     {
-        $domain = Domain::where('user_id', Auth::id())->findOrFail($id);
+        $domain = Domain::where('user_id', Auth::id())->where('reference', $id)->firstOrFail();
 
         $request->validate([
-            'reference' => 'required|string|max:255',
             'url' => 'required|url',
             'ip' => 'required|ip',
             'ssl' => 'required|boolean',
@@ -87,7 +86,6 @@ class DomainController extends Controller
 
         $domain->update([
             'provider_id' => $request->provider_id,
-            'reference' => $request->reference,
             'url' => $request->url,
             'ip' => $request->ip,
             'ssl' => $request->ssl,

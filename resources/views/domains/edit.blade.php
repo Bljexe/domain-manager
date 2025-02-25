@@ -13,7 +13,7 @@
 
         <div class="card shadow-sm border-0">
             <div class="card-body">
-                <form action="{{ route('domains.edit', $domain->reference) }}" method="POST">
+                <form action="{{ route('domains.update', $domain->reference) }}" method="POST">
                     @csrf
                     @method('PUT')
 

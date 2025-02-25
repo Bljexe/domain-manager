@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', function () {
         return view('auth.login');
@@ -44,6 +45,7 @@ Route::middleware(['auth.login'])->group(function () {
         Route::get('/create', [DomainController::class, 'create'])->name('domains.create');
         Route::post('/store', [DomainController::class, 'store'])->name('domains.store');
         Route::get('/edit/{domain}', [DomainController::class, 'edit'])->name('domains.edit');
+        Route::put('/update/{domain}', [DomainController::class, 'update'])->name('domains.update');
         Route::delete('/delete/{domain}', [DomainController::class, 'delete'])->name('domains.destroy');
     });
 
